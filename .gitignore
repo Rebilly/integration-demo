@@ -1,0 +1,8 @@
+/vendor
+.env
+.vagrant
+.idea
+.phpstorm.meta.php
+
+/phpunit.xml
+

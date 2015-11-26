@@ -1,0 +1,993 @@
+/*! Rebilly Plans, Checkout & Management Flow */
+
+/* ==========================================================================
+   Base styles
+   ========================================================================== */
+
+/*
+ * Brand font
+ */
+
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+* {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif!important;
+}
+
+i.icon {
+    font-family: FontAwesome!important;
+}*/
+
+html {
+    color: #263238;
+    font-size: 1em;
+    line-height: 1.4;
+
+}
+
+body.login {
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    min-width: 320px;
+    background: #eceff0;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.4285em;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+body.login > .grid {
+    height: 100%;
+}
+
+body.user {
+    background: #eceff0;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Custom styles
+   ========================================================================== */
+
+/****************************************************************************
+ * Global
+ ****************************************************************************/
+
+a {
+    color: #0033a0;
+}
+
+a:hover {
+    color: #0033a0;
+    text-decoration: underline;
+}
+
+/****************************************************************************
+ * Inputs
+ ****************************************************************************/
+input,
+input:not([type]),
+input[type=text],
+input[type=email],
+input[type=search],
+input[type=password],
+input[type=date],
+input[type=datetime-local],
+input[type=tel],
+input[type=time],
+input[type=url],
+input[type=number],
+select,
+textarea {
+    border-radius: 0 !important;
+    box-shadow: inset 0 1px 1px 0 rgba(0,0,0,0.12)!important;
+    border: 1px solid #9eb1db!important;
+}
+
+input:focus,
+input:not([type]):focus,
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=search]:focus,
+input[type=password]:focus,
+input[type=date]:focus,
+input[type=datetime-local]:focus,
+input[type=tel]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=number]:focus,
+select:focus,
+textarea:focus {
+    box-shadow: none!important;
+    border: 1px solid #0033a0!important;
+}
+
+.field.error input:not([type]),
+.field.error input[type=text],
+.field.error input[type=email],
+.field.error input[type=search],
+.field.error input[type=password],
+.field.error input[type=date],
+.field.error input[type=datetime-local],
+.field.error input[type=tel],
+.field.error input[type=time],
+.field.error input[type=url],
+.field.error input[type=number],
+.field.error select,
+.field.error textarea,
+.fields.error.field input:not([type]),
+.fields.error .field input[type=text],
+.fields.error .field input[type=email],
+.fields.error .field input[type=search],
+.fields.error .field input[type=password],
+.fields.error .field input[type=date],
+.fields.error .field input[type=datetime-local],
+.fields.error .field input[type=tel],
+.fields.error .field input[type=time],
+.fields.error .field input[type=url],
+.fields.error .field input[type=number],
+.fields.error .field select,
+.fields.error .field textarea {
+    border-color: #e53935!important;
+}
+
+select {
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+    padding-bottom: 11px!important;
+    height: 43px!important;
+}
+
+select:focus {
+    outline: none;
+}
+
+/****************************************************************************
+ * Tables
+ ****************************************************************************/
+.ui.table thead th {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: .85em;
+}
+
+/****************************************************************************
+ * Alert Messages
+ ****************************************************************************/
+.ui.message {
+    border-radius: 0;
+}
+
+/****************************************************************************
+ * Buttons
+ ****************************************************************************/
+.ui.brand.color.button {
+    margin-top: 20px;
+    background: #0033a0;
+    color: #ffffff;
+}
+
+.ui.basic.blue.button {
+    box-shadow: 0 0 0 1px #0033a0 inset!important;
+    color: #0033a0!important;
+}
+
+.ui.basic.button:hover {
+    opacity: .7!important;
+}
+
+.ui.brand.secondary.color.button {
+    margin-top: 20px;
+    background: #00aa13;
+    color: #ffffff;
+}
+
+.ui.button:hover,
+.ui.buttons:hover {
+    opacity: .7!important;
+}
+
+.ui.positive.button,
+.ui.positive.buttons .button {
+     background-color: #00aa13!important;
+ }
+
+.ui.negative.button,
+.ui.negative.buttons .button {
+    background-color: #e53935!important;
+}
+
+.ui.large.header {
+    font-weight: normal;
+    margin-top: 0;
+}
+
+small.legal {
+    display: block;
+    width: 90%;
+    opacity: .7;
+    line-height: 1.4em;
+    margin-top: 20px;
+}
+
+/****************************************************************************
+ * Headers
+ ****************************************************************************/
+.ui.header {
+    text-transform: capitalize;
+}
+
+.ui.header.grey {
+    text-transform: none;
+}
+
+.ui.header.title.color.brand {
+    color: #0033a0;
+}
+
+.ui.inverted.brand.color.header {
+    background: #0033a0;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.ui.modal .header.brand.color {
+    color: #0033a0;
+}
+
+/****************************************************************************
+ * Labels
+ ****************************************************************************/
+.ui.label {
+    border-radius: 2px;
+}
+
+.ui.green.label, .ui.green.labels .label {
+    background: #00aa13!important;
+}
+
+.ui.red.label, .ui.red.labels .label {
+    background: #e53935!important;
+}
+
+.ui.blue.label, .ui.blue.labels .label {
+    background: #0033a0!important;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.ui.brand.color.inverted.menu {
+    background: #0033a0;
+    /*background: #004A5D;*/
+    font-weight: normal;
+}
+
+.ui.container.plans,
+.ui.container.account,
+.ui.container.user {
+    margin-top: 60px;
+}
+
+/* ==========================================================================
+   Body Login
+   ========================================================================== */
+
+.column.login {
+    max-width: 450px;
+}
+
+.ui.segment.login {
+    border: 0;
+}
+
+.ui.segment.login p {
+    margin-top: 0;
+}
+
+.column.login .ui.error.message,
+.column.login .ui.success.message,
+.column.login .field.remember {
+    text-align: left;
+}
+
+/* ==========================================================================
+   Body - Select Plan
+   ========================================================================== */
+
+.plan {
+    position: relative;
+    -webkit-transition: -webkit-transform .1s ease;
+    transition: transform .1s ease;
+}
+
+.plan:hover {
+    -webkit-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    transform: translateY(-3px);
+}
+
+.plan .ui.segment.info {
+    padding: 20px 30px;
+}
+
+.plan .price {
+    color: #0033a0;
+    font-size: 3em;
+    line-height: 1em;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.plan .currency {
+    font-size: .55em;
+    position: relative;
+    top: -12px;
+    margin-right: 2px;
+}
+
+.plan .decimal {
+    font-size: .55em;
+    position: relative;
+    top: -14px;
+    margin-left: 4px;
+}
+
+.plans .message {
+    text-transform: uppercase;
+    opacity: .5;
+    margin-top: 0;
+    display: block;
+}
+
+.plan.recommended:before {
+    content: 'most popular';
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: -26px;
+    margin: 0 -1px;
+    text-transform: uppercase;
+    font-size: .9em;
+    padding: 5px 0;
+    height: 29px;
+    text-align: center;
+    background: #0033a0;
+    color: #ffffff;
+}
+
+.plan.recommended .ui.header.title,
+.plan.recommended .ui.segment.info {
+    background: #f9f9fa;
+}
+
+/* ==========================================================================
+   Body Create Account
+   ========================================================================== */
+
+.create .ui.segment.info {
+    padding: 20px;
+}
+
+/* ==========================================================================
+   Body Billing
+   ========================================================================== */
+
+.cvv {
+    color: #0033a0!important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.credit-card {
+    display: block;
+    top: -77px;
+    right: 0;
+    z-index: 999;
+    padding-top: 14px;
+    width: 170px;
+    height: 100px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background: rgba(0, 51, 160, .25);
+    text-align: center;
+}
+
+.cc-cvv2 {
+    position: absolute;
+    top: 48px;
+    right: 7px;
+    z-index: 99;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #e53935;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #e53935;
+    text-align: center;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 30px;
+}
+
+.cc-mb {
+    width: 100%;
+    height: 24px;
+    background: #2c3e50;
+}
+
+.cc-signature {
+    margin: 4px auto;
+    width: 162px;
+    height: 20px;
+    background: #ffffff;
+}
+
+.cc-pan-holder {
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -ms-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.cc-pan {
+    margin: 0;
+    padding: 0;
+    color: #0033a0;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 11px;
+}
+
+/* ==========================================================================
+   Body - User Management
+   ========================================================================== */
+
+.user h2.ui.header.title {
+    padding-left: 20px;
+}
+
+.user .ui.segment {
+    border: 0;
+    padding: 30px;
+}
+
+.user .section .details {
+    margin-left: 220px;
+}
+
+.user .section + .section {
+    margin-top: 35px;
+}
+
+.user .section .title {
+    font-weight: normal;
+    display: block;
+    text-transform: uppercase;
+    color: rgba(38, 50, 56, .5);
+    border-bottom: 1px solid rgba(38, 50, 56, .2);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.user .section .ui.list .item {
+    padding: 15px 0;
+}
+
+.user .section .ui.list .item .description {
+     opacity: .7;
+     font-size: .9em;
+     line-height: 1.3em;
+ }
+
+.user .section .ui.list .item .description.plans {
+    padding-top: 8px;
+    margin-bottom: 35px;
+}
+
+.description.plans span.cycle {
+    opacity: 1!important;
+    color: #0033a0;
+    background: rgba(0,51,160,.15);
+    padding: 2px 4px;
+    display: inline-block;
+    margin: 2px 0;
+}
+
+.user .section .ui.list .item .description.plans:last-child {
+    margin-bottom: 0;
+}
+
+.user .section .ui.list .item i.inverted.link.icon {
+    background: #0033a0!important;
+    display: none;
+}
+
+.user .section .ui.list .item i.inverted.link.icon:hover {
+    text-decoration: none;
+}
+
+.user .ui.header.footer {
+    font-weight: normal;
+    margin-top: 30px;
+}
+
+.secret.cc {
+    font-size: .6em;
+    margin-right: 4px;
+}
+
+.lastfour {
+    font-size: .9em;
+    line-height: 1em;
+    position: relative;
+    top: 2px;
+}
+
+.user .section .ui.list .item .right.floated.content {
+    text-align: right;
+}
+
+.user .section .ui.list .item .right.floated.content a {
+    margin-bottom: 15px;
+    display: block;
+}
+
+i.paymentCard {
+    line-height: 1;
+    vertical-align: middle;
+    font-size: 1.6em;
+}
+
+.payment.method,
+.select.layout {
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+.payment.method > label,
+.select.layout > label {
+    display: block;
+    position: relative;
+    border: 1px solid rgba(38, 50, 56, .3);
+    margin-bottom: 10px;
+    padding: 20px 20px 20px 60px;
+    border-radius: 2px;
+    cursor: pointer;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+.select.layout > label {
+    max-height: 82px;
+    height: 82px;
+}
+
+.payment.method > label:after,
+.select.layout > label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 35px;
+    left: 20px;
+    transform: none;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border: 1px solid rgba(34,36,38,.35);
+    border-radius: 50%;
+    -webkit-transition: border 500ms ease-in-out;
+    -moz-transition: border 500ms ease-in-out;
+    -o-transition: border 500ms ease-in-out;
+    transition: border 500ms ease-in-out;
+}
+
+.select.layout > label:after {
+    top: 32px;
+}
+
+.payment.method > input,
+.select.layout > input {
+    display: none;
+}
+
+.payment.method > input:checked + label,
+.payment.method > input:checked:hover + label,
+.select.layout > input:checked + label,
+.select.layout > input:checked:hover + label {
+    border: 1px solid #0033a0;
+    background: rgba(0, 51, 160, .04);
+    -webkit-box-shadow: 0 0 2px 1px rgba(0, 51, 160, .2);
+    -moz-box-shadow: 0 0 2px 1px rgba(0, 51, 160, .2);
+    box-shadow: 0 0 2px 1px rgba(0, 51, 160, .2);
+}
+
+.payment.method > input:hover + label,
+.select.layout > input:hover + label {
+    border: 1px solid rgba(0, 51, 160, .4);
+}
+
+.payment.method > input:checked + label:after,
+.select.layout > input:checked + label:after {
+    border: 1px solid #0033a0;
+    background: #0033a0;
+    box-shadow: inset 0 0 0 3px #ffffff;
+}
+
+.payment.method > input:hover + label:after,
+.select.layout > input:hover + label:after {
+    border: 1px solid rgba(0, 51, 160, .4);
+}
+
+.payment.method small,
+.select.layout small {
+    opacity: .5;
+    font-size: .7em;
+}
+
+.addPayment,
+.addPlan {
+    text-transform: uppercase!important;
+}
+
+.addPayment:hover,
+.addPlan:hover {
+    text-decoration: none;
+}
+
+.plan-status {
+    text-transform: uppercase;
+    font-size: .8em;
+    color: rgba(0,51,160,.7);
+    background: rgba(0,51,160,.15);
+    padding: 2px 6px;
+    font-weight: normal;
+}
+
+.select.layout .price {
+    color: #0033a0;
+    font-size: 2.1em;
+    line-height: .7em;
+    margin-bottom: 0;
+    position: relative;
+    top: 4px;
+}
+
+.select.layout .currency {
+    font-size: .55em;
+    position: relative;
+    top: -10px;
+    margin-right: 2px;
+}
+
+.select.layout .decimal {
+    font-size: .55em;
+    position: relative;
+    top: -10px;
+    margin-left: 4px;
+}
+
+.select.layout .layout.name {
+    font-size: 1.05em;
+    font-weight: bold;
+    line-height: .7em;
+    text-transform: uppercase;
+    color: #0033a0;
+}
+
+.select.layout label p {
+    opacity: .7;
+    font-size: .9em;
+    line-height: 1.2em;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.no-top {
+    margin-top: 0!important;
+}
+
+.no-bottom {
+    margin-bottom: 0!important;
+}
+
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+/* Large */
+@media(min-width:1200px) {
+
+}
+
+/* Medium */
+@media(min-width:992px) and (max-width:1199px){
+
+}
+
+/* Small */
+@media(min-width:768px) and (max-width:992px){
+    .user .section .details {
+        margin-left: 0;
+    }
+}
+
+/* Extra Small */
+@media(max-width:767px){
+    .ui.container.plans,
+    .ui.container.account,
+    .ui.container.user {
+        margin-top: 40px;
+    }
+
+    .plan.recommended {
+        margin-top: 1.5rem;
+    }
+
+    .user .section .details {
+        margin-left: 0;
+    }
+
+    .user .section .ui.list .item .content {
+        display: block;
+    }
+
+    .user .section .ui.list .item .right.floated.content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .user .section .ui.list .item a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        border: 1px solid #0033a0;
+        padding: .6rem;
+        border-radius: 2px;
+        margin: 15px 0 15px 0;
+    }
+
+    .user .section .ui.list .item .ui.avatar.image {
+        display: none;
+    }
+
+    .payment.method > label,
+    .select.layout > label {
+        padding: 20px;
+    }
+
+    .payment.method > label:after,
+    .select.layout > label:after {
+        display: none;
+    }
+
+    .select.layout > label {
+        max-height: none;
+        height: auto;
+    }
+
+    .select.layout > label .eight.wide.column,
+    .payment.method > label .wide.column {
+        text-align: left!important;
+    }
+}
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
