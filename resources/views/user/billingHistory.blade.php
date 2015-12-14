@@ -11,23 +11,15 @@
                 <tr>
                     <th>ID</th>
                     <th>Date</th>
-                    <th>Status</th>
-                    <th>Payment Method</th>
                     <th>Total</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($transactions as $transaction): ?>
+                <?php foreach ($invoices as $invoice): ?>
                 <tr>
-                    <td><?= $transaction->getId() ?></td>
-                    <td><?= date('Y-m-d', strtotime($transaction->getCreatedTime())) ?></td>
-                    <td><?= $transaction->getResult() ?></td>
-                    <td>
-                        <i class="large <?= strtolower($transaction->getPaymentCard()->getBrand()) ?> icon"></i>
-                        <span class="secret cc">•••• •••• ••••</span>
-                        <span class="lastfour"><?= $transaction->getPaymentCard()->getLast4() ?></span>
-                    </td>
-                    <td><?= $transaction->getCurrency() . ' ' . $transaction->getAmount() ?></td>
+                    <td><a href="<?= url('download-invoice', ['invoiceId' => $invoice->getId()]) ?>" target="_blank"> <?= $invoice->getId() ?></a></td>
+                    <td><?= date('Y-m-d', strtotime($invoice->getDueTime())) ?></td>
+                    <td><?= $invoice->getCurrency() . ' ' . $invoice->getAmount() ?></td>
                 </tr>
                 <?php endforeach ?>
                 </tbody>

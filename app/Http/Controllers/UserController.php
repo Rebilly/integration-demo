@@ -7,6 +7,8 @@ use Rebilly\Entities\SubscriptionSwitch;
 use Rebilly\Http\Exception\UnprocessableEntityException;
 use Rebilly\Http\Exception\NotFoundException;
 use Rebilly\ParamBag;
+use Rebilly\Rest\File;
+use RuntimeException;
 
 class UserController extends Controller
 {
@@ -272,14 +274,13 @@ class UserController extends Controller
 
     public function billingHistory()
     {
-        $transactions = $transactions = $this->client()->transactions()->search([
+        $invoices = $transactions = $this->client()->invoices()->search([
             'filter' => 'customerId:' . $_SESSION['customerId'],
-            'expand' => 'paymentCard',
         ]);
         return view($this->layout, [
             'content' => view('user.billingHistory', [
                 'customerId' => $_SESSION['customerId'],
-                'transactions' => $transactions,
+                'invoices' => $invoices,
             ]),
         ]);
     }
@@ -317,5 +318,34 @@ class UserController extends Controller
                 'customerId' => $customerId,
             ]),
         ]);
+    }
+
+    public function downloadInvoice($invoiceId)
+    {
+        $file = $this->client()->invoices()->loadPdf($invoiceId, [
+            'customerId' => $_SESSION['customerId'],
+        ]);
+
+        if ($file instanceof File) {
+            $filename = tempnam(sys_get_temp_dir(), 'Invoice') . '.pdf';
+            $file->save($filename);
+
+            if(is_file($filename)) {
+                header('Pragma: public');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                header('Last-Modified: ' . gmdate('D, d M Y H:i:s', filemtime($filename)) . ' GMT');
+                header('Cache-Control: private', false);
+                header('Content-Type: ' . $file->getMimeType());
+                header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+                header('Content-Transfer-Encoding: binary');
+                header('Content-Length: ' . filesize($filename));
+                header('Connection: close');
+                readfile($filename);
+                exit();
+            }
+        } else {
+            throw new RuntimeException('Cannot download file');
+        }
     }
 } 

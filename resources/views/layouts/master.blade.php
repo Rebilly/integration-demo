@@ -34,6 +34,10 @@
                 </div>
             </div>
         </div>
+        <?php else: ?>
+        <div class="right menu">
+            <a href="<?= url('/login') ?>" class="item">Log In</a>
+        </div>
         <?php endif ?>
     </div>
 </div>
