@@ -342,7 +342,6 @@ class UserController extends Controller
                 header('Content-Length: ' . filesize($filename));
                 header('Connection: close');
                 readfile($filename);
-                exit();
             }
         } else {
             throw new RuntimeException('Cannot download file');
