@@ -67,4 +67,6 @@ $app->group(['middleware' => 'auth'], function ($app) {
 
     $app->get('/close-account', 'App\Http\Controllers\UserController@closeAccount');
     $app->post('/close-account', 'App\Http\Controllers\UserController@closeAccount');
+
+    $app->get('/download-invoice/{invoiceId}', 'App\Http\Controllers\UserController@downloadInvoice');
 });
